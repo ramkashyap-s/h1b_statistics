@@ -53,6 +53,7 @@ def get_topk_metrics(args, occupation_column_name, state_column_name, status_col
     @param state_column_name:
     """
     total_status_count = 0
+    # maintain two dictionaries to keep track of encountered occupations and states for certified status applications
     occupation_status_count = defaultdict(int)
     state_status_count = defaultdict(int)
     try:
@@ -67,9 +68,10 @@ def get_topk_metrics(args, occupation_column_name, state_column_name, status_col
                     state_status_count[row[state_column_name]] += 1
                     total_status_count += 1
 
-        # find top k aggregate based on decreasing order of count and then alphabetically
+        # find top k occupations with most. no. of certified applications
         top_occupation_results = heapq.nsmallest(args.top_k, occupation_status_count.items(), key=sort_key)
 
+        # find top k states with most no. of certified applications
         top_state_results = heapq.nsmallest(args.top_k, state_status_count.items(), key=sort_key)
 
         return top_occupation_results, top_state_results, total_status_count
