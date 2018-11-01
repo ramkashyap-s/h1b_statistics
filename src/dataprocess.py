@@ -80,6 +80,11 @@ def get_topk_metrics(args, occupation_column_name, state_column_name, status_col
         print(sys.stderr, "Exception: %s" % str(error))
         sys.exit(1)
 
+def try_div(numerator,denominator):
+    """ helper for division with exception handling
+    """
+    try: return numerator/denominator
+    except ZeroDivisionError: return 0
 
 def output_data(args, output_file_path, top_k_results, total_status_count, output_columns):
     """
@@ -100,7 +105,7 @@ def output_data(args, output_file_path, top_k_results, total_status_count, outpu
             for key, count in top_k_results:
                 writer.writerow({output_columns[0]: key,
                                  output_columns[1]: count,
-                                 output_columns[2]: '{:.1%}'.format(count / total_status_count)})
+                                 output_columns[2]: '{:.1%}'.format(try_div(count,total_status_count))})
 
     except Exception as error:
         print(error)
