@@ -44,7 +44,9 @@ In this step output for top 10 occupations and top 10 states is written into res
 2. Place the required tests in the `insight_testsuite folder`
 3. Run `./run.sh` command to start the program  
 4. Program takes four mandatory arguments: program name, input file path and two output file paths. 
+To run:
 `python3 ./src/h1b_counting.py  -i inputfilepath  -o1 output1filepath -o2 output2filepath`
+Example:
 `python3 ./src/h1b_counting.py  -i ./input/h1b_input.csv  -o1 ./output/top_10_occupations.txt -o2 ./output/top_10_states.txt`
 5. There will be two files the output folder:
   * top_10_occupations.txt - the file containing top 10 occupations for certified visa applications
