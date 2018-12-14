@@ -1,4 +1,4 @@
-## Insight h1b statistics 
+## h1b statistics 
 
 ## Problem
 
